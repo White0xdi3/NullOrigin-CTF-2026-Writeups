@@ -26,10 +26,7 @@ Every stage page includes:
 - The actual break — the technique that recovers the flag
 - Design notes: why a shortcut doesn't exist, what a solve script proves, and any interesting build trivia
 
-Two of the eight cryptography stages are of note:
-
-- **13-lantern** (the crypto meta) is keyed by seven non-flag internal secrets recovered from stages 06–12, combined via secret sharing over `Z/2^64` — holding all seven flags is not enough to open it.
-- **08-errata**'s original writeup notes did not survive; its page states only what's independently verifiable (the flag, its position in the chain, and one technical detail cross-referenced from 13-lantern's own secret table).
+**13-lantern** (the crypto meta) is worth calling out specifically: it's keyed by seven non-flag internal secrets recovered from stages 06–12, combined via secret sharing over `Z/2^64` — holding all seven flags is not enough to open it.
 
 The Reverse Engineering category is a from-the-ground-up "keygen-me" design: no binary ever computes and compares a flag, so there's no secret to extract from memory or a static binary at any point — see [rev/README.md](rev/README.md) for the full design philosophy, including why the board was rebuilt after earlier iterations turned out to leak flags directly.
 
