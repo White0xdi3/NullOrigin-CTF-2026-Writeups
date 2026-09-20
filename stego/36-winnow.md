@@ -66,4 +66,8 @@ Decoy 5 is the cruellest: it's stage 35's flag — the key you're already holdin
 
 ## Solve
 
-`solve_36.py` works from the shipped `sheet.png` and the previous flag alone. It reads all 2048 records, winnows under the key, discovers the payload length itself rather than being told it, and confirms the payload matches ground truth byte-for-byte. It also proves the negative case rather than just asserting it: re-running the winnowing under the *wrong* key (stage 34's flag) confirms exactly zero cells validate, and it pulls all five decoys for cross-checking.
+[`solve.py`](36-winnow/solve/solve.py) works from the shipped `sheet.png` and the stage-35 flag alone. It reads all 2048 records, winnows under the key, discovers the payload length itself rather than being told it, then prints the recovered flag and share, plus the naive unwinnowed read as a decoy.
+
+```
+python3 solve.py <path-to-36-winnow> <flag_35>
+```

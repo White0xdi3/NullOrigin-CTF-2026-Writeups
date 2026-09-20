@@ -67,3 +67,35 @@ Stages 35, 37, and 38 are destroyed by *any* re-encode — opening the file in a
 | 38 | quietus | insane | DEFLATE literal-vs-match choice | [38-quietus.md](38-quietus.md) |
 
 Total shipped size across all eight stages: roughly 15 MB.
+
+## Running the solvers
+
+Every stage ships a working reference solver at `<stage>/solve/solve.py`. Each one is self-contained — it only reads the challenge files, reproduces the intended extraction from scratch, and prints the recovered flag. None of them import a private answer-key module.
+
+```
+pip install -r requirements.txt
+```
+
+**31-driftwood** is the only unkeyed stage — run it with just the challenge directory:
+
+```
+python3 31-driftwood/solve/solve.py /path/to/downloaded/31-driftwood
+```
+
+**32 through 36 and 38** are each keyed by the *previous* stage's flag, so pass the flag you just recovered as the next argument:
+
+```
+python3 32-safelight/solve/solve.py /path/to/downloaded/32-safelight "Null0rigin{...31's flag...}"
+```
+
+Chain them stage by stage, feeding each script's output into the next one's command line.
+
+**37-mordant** needs two things: stage 36's flag, and all six mordant shares hidden across stages 31–36 (each script above also prints its stage's 8-byte share):
+
+```
+python3 37-mordant/solve/solve.py /path/to/downloaded/37-mordant \
+    "Null0rigin{...36's flag...}" \
+    <share_31> <share_32> <share_33> <share_34> <share_35> <share_36>
+```
+
+The challenge files themselves aren't in this repo — download them from the [release repo](https://github.com/White0xdi3/NullOrigin-CTF-2026) first, then point each solver at the corresponding extracted stage directory.

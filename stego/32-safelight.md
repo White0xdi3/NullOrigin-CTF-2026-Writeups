@@ -66,4 +66,8 @@ A cleverer-looking route doesn't help either: XORing bitplane 0 of the two files
 
 ## Solve
 
-`solve_32.py` runs from the two shipped PNGs and the stage-31 flag, nothing else. It asserts the residual alphabet sits within `{-1, 0, 1, 3}`, that no decoy pixel is also a data pixel, that the recovered bit count divides evenly by 8, and that the payload equals ground truth byte for byte. It also checks the traps mechanically: confirms the real flag and share are absent from bitplane 0, that keying bitplane 0 directly returns nothing, and dumps both decoy masks as separate images for inspection.
+[`solve.py`](32-safelight/solve/solve.py) runs from the two shipped PNGs and the stage-31 flag, nothing else. It confirms the residual alphabet sits within `{-1, 0, 1, 3}`, that no decoy pixel is also a data pixel, that the recovered bit count divides evenly by 8, then prints the recovered flag and share. It also checks the traps mechanically: confirms the real flag is absent from bitplane 0, and prints the tEXt decoy as found.
+
+```
+python3 solve.py <path-to-32-safelight> <flag_31>
+```

@@ -70,4 +70,8 @@ Decoy 3 is right-channel-only, deliberately. Its text is written into the de-int
 
 ## Solve
 
-`solve_34.py` re-derives every step from the shipped files rather than trusting build-side state. Part A sweeps the chip length on `linetest.wav`. Part B decodes `undertone.wav` with the stage-33 key at the length A found, and confirms the payload byte-for-byte. Part C prints every bit's correlation margin and fails if the weakest one is too close to the noise floor. Part D reads all four decoys back with independent detectors and confirms none of them touched the left channel.
+[`solve.py`](34-undertone/solve/solve.py) re-derives every step from the shipped files. Part A sweeps the chip length on `linetest.wav` using only its published key and plaintext. Part B decodes `undertone.wav` with the stage-33 key at the chip length A found, then prints the recovered flag and share. It also prints the right-channel LSB decoy as found.
+
+```
+python3 solve.py <path-to-34-undertone> <flag_33>
+```

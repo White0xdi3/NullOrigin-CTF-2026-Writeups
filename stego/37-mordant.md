@@ -104,4 +104,8 @@ The filter-byte channel pins types Sub, Up, and Avg at roughly 25% each (each is
 
 ## Solve
 
-`solve_37.py` runs against the shipped bytes plus the stage-36 flag and the six shares as ground truth, using an independent PNG reader — it walks the chunk stream itself, verifies every chunk's CRC, inflates the IDAT stream, and unfilters all 1900 lines by hand (including Paeth prediction) rather than relying on an image library. It confirms the result matches both the intended pixel data and an independent decoder's render. It proves both locks are individually necessary — peeling only the outer lock returns nothing, applying only the shares returns nothing — and separately confirms that substituting the poisoned entry's seventh share also fails to open the inner lock, exactly as designed.
+[`solve.py`](37-mordant/solve/solve.py) runs against the shipped bytes plus the stage-36 flag and all six mordant shares, using an independent PNG reader — it walks the chunk stream itself, verifies every chunk's CRC, inflates the IDAT stream, and unfilters all 1900 lines by hand (including Paeth prediction) rather than relying on an image library, cross-checking the result against PIL's own decode. It also finds and decodes the poisoned plain-LSB decoy, and dynamically detects the one-character homoglyph against the stage-36 flag it was given.
+
+```
+python3 solve.py <path-to-37-mordant> <flag_36> <share_31> <share_32> <share_33> <share_34> <share_35> <share_36>
+```

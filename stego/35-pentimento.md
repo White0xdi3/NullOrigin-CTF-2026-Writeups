@@ -52,4 +52,8 @@ Decoy 3 is the worst of the three. A plain frame-to-frame absolute-difference st
 
 ## Solve
 
-`solve_35.py` opens `pentimento.gif` and nothing else, parsing it byte by byte with its own GIF reader and LZW decoder — an image library only appears at the end, as an independent renderer to cross-check against. It asserts the file's shape (11 frames, 480x360, full-canvas, non-interlaced, a 256-entry local table on every frame), the 1408 pair-bits, the works-entry header and CRC under the correct key, and the payload against ground truth — and separately confirms that the *wrong* key (the stage-33 flag) does not unwrap it, so the keying claim is checked mechanically rather than asserted in prose.
+[`solve.py`](35-pentimento/solve/solve.py) opens `pentimento.gif` and takes the stage-34 flag as its key, parsing the container byte by byte with its own GIF reader and LZW decoder — an image library only appears at the end, as an independent renderer cross-checked pixel-for-pixel against the hand parse. It prints the recovered flag and share, plus the frame-delay and comment decoys as found.
+
+```
+python3 solve.py <path-to-35-pentimento> <flag_34>
+```

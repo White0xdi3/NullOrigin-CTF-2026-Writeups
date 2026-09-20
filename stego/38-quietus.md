@@ -78,7 +78,11 @@ Decoy 3 is the cruellest trap on the entire chain. The plate's actual pixel rang
 
 ## Solve
 
-`solve_38.py` shares no code at all with the file's builder — it's a fully independent, second bit-level DEFLATE implementation with its own bit reader, symbol decoder, and copy logic, specifically so a bug in the encoder can't cancel against a matching bug in the decoder. It verifies the PNG container end to end (chunk CRCs, header fields, the exact zlib/Adler-32 framing, block type), verifies the channel rule itself (every match is length 3 to the most recent prior occurrence; every unavailable position emits an uncounted literal), confirms the payload against ground truth under the correct key while confirming the wrong key fails, and separately verifies the rendered image against three independent decoders — all producing byte-identical pixel output.
+[`solve.py`](38-quietus/solve/solve.py) is an independent, second bit-level DEFLATE implementation with its own bit reader, symbol decoder, and copy logic, built only from the public RFC 1951 fixed-Huffman tables — nothing here reuses the challenge's own encoder code. It verifies the PNG container end to end (chunk CRCs, header fields, the exact zlib framing, block type), decodes the channel rule itself (every match is length 3 to the most recent prior occurrence; every unavailable position emits an uncounted literal), then prints the final recovered flag — the last one on the chain.
+
+```
+python3 solve.py <path-to-38-quietus> <flag_37>
+```
 
 ## Closing note
 

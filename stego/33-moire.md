@@ -65,4 +65,8 @@ Decoy 1 is the nastiest of the three: an `l` in place of the `i`, and content th
 
 ## Solve
 
-`solve_33.py` opens only the shipped `moire.png` and imports the stage-32 flag for the key — no build-side state, no RNG, no length hint from outside the payload itself. It rederives the pattern book from the image, asserts every carrier cell is one of its weight's two legal arrangements before emitting a bit (so a broken screen stops the solve rather than producing garbage), and confirms the payload matches ground truth byte-for-byte.
+[`solve.py`](33-moire/solve/solve.py) opens only the shipped `moire.png` and takes the stage-32 flag as its key — no private build state, no RNG, no length hint from outside the payload itself. It rederives the pattern book from first principles (a pure function of the halftone's own clumping-energy ranking), requires every carrier cell to be one of its weight's two legal arrangements before emitting a bit (so a broken screen stops the solve rather than producing garbage), then prints the recovered flag and share.
+
+```
+python3 solve.py <path-to-33-moire> <flag_32>
+```

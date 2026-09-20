@@ -59,4 +59,8 @@ assert raw[:3] == b"PL8"
 
 ## Solve
 
-`solve_31.py` performs the extraction from the shipped bytes only, asserts the recovered payload equals `flag || 0x1F || share` byte-for-byte, and additionally asserts that a *row-major* read of the same alpha plane does **not** validate — so the write-up's claim about read order is checked mechanically rather than just asserted. It also pulls all three decoys and confirms each one fails the container check.
+[`solve.py`](31-driftwood/solve/solve.py) performs the extraction from the shipped bytes only and prints the recovered flag and share. It also confirms mechanically that a *row-major* read of the same alpha plane does **not** validate — so the write-up's claim about read order is checked, not just asserted — and pulls all three decoys, confirming each one fails the container check.
+
+```
+python3 solve.py <path-to-31-driftwood>
+```
