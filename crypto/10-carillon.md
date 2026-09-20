@@ -48,6 +48,6 @@ Combine both chains: Pohlig–Hellman on the negative-discriminant class group g
 
 ## Solve
 
-`solve.py` runs in 0.9 s wall-clock against the built artifact (0.6 s of that internal computation). It parses the container, reproduces the bytecode's keystream, reads both signs, runs Pohlig–Hellman, intersects the two constraints, and opens the archive.
+[`solve.py`](10-carillon/solve/solve.py) runs in 0.9 s wall-clock against the built artifact (0.6 s of that internal computation). It parses the container, reproduces the bytecode's keystream, reads both signs, runs Pohlig–Hellman, intersects the two constraints, and opens the archive.
 
 **Feeds the finale:** the internal secret this stage contributes to 13-lantern is `n` as a 100-bit big-endian integer (13 bytes), concatenated with the canonical reduced form of `P^n` in the negative-discriminant chain — `a`, `b`, `c` each as 16-byte signed big-endian integers, in that order (61 bytes total). The convention is fixed by the ledger's own record layout: the seal record of `ledger-I.dat` *is* that form.

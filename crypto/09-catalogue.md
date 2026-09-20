@@ -59,4 +59,4 @@ The stage key is the shelfmark of accession number `0x3ADE68B1`, named only insi
 
 ## Solve
 
-`solve.py` runs in 49 s and uses about 1.9 GB of resident memory against the built 2 GB artifact.
+[`solve.py`](09-catalogue/solve/solve.py) runs in 49 s and uses about 1.9 GB of resident memory against the built 2 GB artifact.

@@ -39,6 +39,6 @@ There's no key, no runnable reference, and no oracle — the only way in is reco
 
 ## Solve
 
-`solve.py` runs in 1.8–2.0 s with the 420 MB dump warm in page cache, or 9.0 s on a cold first read. It walks `PT_LOAD`, picks the one RWX mapping, locates the ciphertext by entropy against a working set that's otherwise counter lines, restores the rate, steps the permutation backwards 3,853 times (the log itself is 3,845 blocks; the extra 8 are a deliberate alignment margin), and checks 496 record checksums — all pass.
+[`solve.py`](07-daybook/solve/solve.py) runs in 1.8–2.0 s with the 420 MB dump warm in page cache, or 9.0 s on a cold first read. It walks `PT_LOAD`, picks the one RWX mapping, locates the ciphertext by entropy against a working set that's otherwise counter lines, restores the rate, steps the permutation backwards 3,853 times (the log itself is 3,845 blocks; the extra 8 are a deliberate alignment margin), and checks 496 record checksums — all pass.
 
 **Feeds the finale:** the internal secret this stage contributes to 13-lantern is the 320-bit state *before* the two leading lanes were staged over (the restored state, not the dumped one), big-endian, lanes 0 through 4 in order, 40 bytes. The dumped state is the wrong one and differs in its first 128 bits — only the close-of-log trailer recovered from the emitted code tells the two apart.

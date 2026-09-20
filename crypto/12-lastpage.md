@@ -70,6 +70,6 @@ No oracle ships for testing a partial or candidate factorization (only the gener
 
 ## Solve
 
-The attack pipeline above runs automatically end-to-end against the built artifact in a total of 142.1 seconds, dominated by the 512-eigenvector recovery step (130.9s).
+The attack pipeline above runs automatically end-to-end in [`solve.py`](12-lastpage/solve/solve.py) against the built artifact in a total of 142.1 seconds, dominated by the 512-eigenvector recovery step (130.9s).
 
 **Feeds the finale:** the internal secret this stage contributes to 13-lantern is `SHA-256` over the canonical factor byte string: `A`, then `B`, then `C`, columns in canonical order, each entry 4 bytes little-endian (32 bytes total). Canonical order is fixed by `META-INF/o/notes.txt` inside the jar: scale each triple so the first nonzero entry of `a_r` is 1 and the first nonzero entry of `b_r` is 1 (letting `c_r` absorb both scalings), then sort lexicographically by `(a_r || b_r || c_r)`. This resolves the scaling gauge ambiguity inherent to the decomposition.

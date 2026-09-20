@@ -64,6 +64,6 @@ combinatorial rank = 003a3b71…ceb6  (log2 437.9)
 
 ## Solve
 
-The recovery pipeline above is implemented end-to-end in the solve script, running against the raw 2.2 GB image in under 10 seconds cold, well under 1 second warm.
+The recovery pipeline above is implemented end-to-end in [`solve.py`](11-cartouche/solve/solve.py), running against the raw 2.2 GB image in under 10 seconds cold, well under 1 second warm.
 
 **Feeds the finale:** the internal secret this stage contributes to 13-lantern is the 40 payload cell positions, sorted ascending in the index space `recover.elf` fixes (`byte*8 + bit`, bit 0 = LSB), encoded as their combinatorial rank and exported as 56 bytes big-endian. That encoding is exactly what resolves the flip-set-versus-scrambled-complement ambiguity — the unrank routine in `recover.elf` pins it down.

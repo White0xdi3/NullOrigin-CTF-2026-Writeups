@@ -49,4 +49,4 @@ A naive builder that picks the secret-sharing polynomial *after* generating the 
 
 ## Solve
 
-The solve script re-runs all seven prior stages' solvers against their built artifacts and takes the canonical byte string each one produces — the shares themselves are not stored in any file. It then hashes each one, adds the published tweaks, performs the 2-adic solve for the top bits of `f(0)`, and walks the resulting 4,096 candidates against the GCM tag to find the one that opens `lantern.sealed`.
+[`solve.py`](13-lantern/solve/solve.py) re-runs all seven prior stages' solvers against their built artifacts and takes the canonical byte string each one produces — the shares themselves are not stored in any file. It then hashes each one, adds the published tweaks, performs the 2-adic solve for the top bits of `f(0)`, and walks the resulting 4,096 candidates against the GCM tag to find the one that opens `lantern.sealed`.

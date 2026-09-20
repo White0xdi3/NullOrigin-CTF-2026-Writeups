@@ -39,6 +39,6 @@ The key-transfer frame belongs to a different frame class entirely. Once `G` is 
 
 ## Solve
 
-`solve.py` runs in about 33 seconds end to end against the built artifact, streaming the 1.4 GB capture rather than loading it whole.
+[`solve.py`](08-errata/solve/solve.py) runs in about 33 seconds end to end against the built artifact, streaming the 1.4 GB capture rather than loading it whole.
 
 **Feeds the finale:** the internal secret this stage contributes to 13-lantern is `SHA-256` over the 512 columns of `G`, taken in walking-ones order — 32 bytes.

@@ -54,6 +54,6 @@ There is one genuine ambiguity: which of the two 32-bit words in `.rodata` is th
 
 ## Solve
 
-`solve.py` runs in 23.2 seconds end to end (warm cache; slower under load) against the built artifact. It reads the constants directly out of `.rodata`, so it survives a rebuild with a new seed.
+[`solve.py`](06-bindery/solve/solve.py) runs in 23.2 seconds end to end (warm cache; slower under load) against the built artifact. It reads the constants directly out of `.rodata`, so it survives a rebuild with a new seed.
 
 **Feeds the finale:** the internal secret this stage contributes to 13-lantern is the 121-cell register seed, expressed as the base-3 digits of one integer (least significant digit first, cell 0 is digit 0), written as 24 bytes big-endian. The framing fixes the register at entry zero, which is what fixes the digit-order convention.
